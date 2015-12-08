@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SystemInformation\IDriveFreeSpaceChanged.cs" />
+    <Compile Include="SystemInformation\IProvideSystemInformation.cs" />
     <Compile Include="SystemInformation\Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemInformation\Response.cs" />
