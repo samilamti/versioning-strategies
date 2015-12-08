@@ -7,7 +7,7 @@ namespace MessageContracts.SystemInformation
     public class Response
     {
         [DataMember]
-        public DateTime? DateTime { get; set; }
+        public string DateTime { get; set; }
         [DataMember]
         public string UserName { get; set; }
         [DataMember]
