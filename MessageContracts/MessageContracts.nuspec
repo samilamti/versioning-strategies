@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Sami Lamti</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Supports SystemInformation</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Contracts</tags>
+  </metadata>
+</package>
