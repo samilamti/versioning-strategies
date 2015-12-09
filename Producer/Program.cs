@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 using MessageContracts.SystemInformation;
 using NServiceBus;
+using NServiceBus.Pipeline;
+using NServiceBus.Pipeline.Contexts;
 
 namespace Producer
 {
@@ -25,13 +28,13 @@ namespace Producer
                 t.IsInterface &&
                 t.Name.StartsWith("I") && t.Name.EndsWith("ed"));
 
-            using (var host = new ServiceHost(typeof(SystemInformationService), baseAddress))
+            using (var host = new ServiceHost(typeof (SystemInformationService), baseAddress))
             using (var bus = Bus.Create(busConfiguration).Start())
             {
                 var smb = new ServiceMetadataBehavior
                 {
                     HttpGetEnabled = true,
-                    MetadataExporter = { PolicyVersion = PolicyVersion.Policy15 }
+                    MetadataExporter = {PolicyVersion = PolicyVersion.Policy15}
                 };
                 host.Description.Behaviors.Add(smb);
                 host.Open();
@@ -46,8 +49,17 @@ namespace Producer
                     if (command == "msg")
                     {
                         var serviceInstance = new SystemInformationService();
-                        var systemInformation = serviceInstance.GetSystemInformation(new Request {IncludeDriveInformation = true});
-                        bus.Publish<IDriveFreeSpaceChanged>(info => info.FreeSpace = systemInformation.FreeSpace.GetValueOrDefault(0));
+                        var request = new Request
+                        {
+                            IncludeDriveInformation = true,
+                            IncludeInformationForDrives = new[] {"C", "D", "E", "F", "G"}
+                        };
+                        var systemInformation = serviceInstance.GetSystemInformation(request);
+                        bus.Publish<IDriveFreeSpaceChanged>(info =>
+                        {
+                            info.Drives = systemInformation.DriveInformation;
+                            info.FreeSpace = systemInformation.FreeSpace.Value;
+                        });
                         Prompt();
                         continue;
                     }
