@@ -2,6 +2,7 @@
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.ServiceModel;
 using MessageContracts.SystemInformation;
 using NServiceBus;
@@ -74,14 +75,17 @@ namespace Consumer
             {
                 DateTimeFormat = CultureInfo.InvariantCulture.DateTimeFormat.ShortDatePattern,
                 IncludeDateTime = true,
-                IncludeDriveInformation = true,
+                IncludeInformationForDrives = new [] {"C", "D"},
                 IncludeUserName = true
             };
             var response = GetSystemInformation(request, uriString);
             watch.Stop();
             Console.WriteLine($"System information through service:");
             Console.WriteLine($"DateTime:           {response.DateTime}");
-            Console.WriteLine($"System Free Space:  {response.FreeSpace} MB");
+            Console.WriteLine($"Free Space:");
+            foreach (var drive in response.DriveInformation) { 
+                Console.WriteLine($"            {drive.Drive}:  {drive.FreeSpaceFormatted}");
+            }
             Console.WriteLine($"Logged in User:     {response.UserName}");
             Console.WriteLine($"- Service roundtrip: {watch.Elapsed.TotalMilliseconds}ms");
         }
@@ -101,7 +105,9 @@ namespace Consumer
     {
         public void Handle(IDriveFreeSpaceChanged message)
         {
-            Console.WriteLine($"Received event {nameof(IDriveFreeSpaceChanged)}! Free space: {message.FreeSpace} MB");
+            Console.WriteLine($@"Received event {
+                nameof(IDriveFreeSpaceChanged)}! Free space: {
+                String.Join(",", message.Drives.Select(di => $"{di.Drive}: {di.FreeSpaceFormatted}"))}");
         }
     }
 }
