@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MessageContracts">
-      <HintPath>..\MessageContracts\bin\Debug\MessageContracts.dll</HintPath>
+    <Reference Include="MessageContracts, Version=1.0.0.19157, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MessageContracts.1.0.0.19157\lib\net452\MessageContracts.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>packages\NServiceBus.5.2.11\lib\net45\NServiceBus.Core.dll</HintPath>
