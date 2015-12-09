@@ -12,13 +12,12 @@ namespace Tests
         [TestMethod, TestCategory("Integration")]
         public void IncludeEverything()
         {
-            var request = new Request { IncludeDateTime = true, IncludeDriveInformation = true, IncludeUserName = true, DateTimeFormat = DateTimeFormatInfo.InvariantInfo.ShortDatePattern };
+            var request = new Request { IncludeDateTime = true, IncludeUserName = true, DateTimeFormat = DateTimeFormatInfo.InvariantInfo.ShortDatePattern };
             var service = new SystemInformationService();
             var response = service.GetSystemInformation(request);
 
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.DateTime);
-            Assert.IsTrue(response.FreeSpace > 0);
             Assert.IsNotNull(response.UserName);
         }
 
