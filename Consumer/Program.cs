@@ -22,7 +22,10 @@ namespace Consumer
                 t.Name.StartsWith("I") && t.Name.EndsWith("ed"));
             using (var bus = Bus.Create(busConfiguration).Start())
             {
-                Console.WriteLine("Consumer running; enter 'svc' to call service and 'quit' to exit");
+                Console.WriteLine("*** Consumer running");
+                Console.WriteLine("Enter 'svc' to call service");
+                Console.WriteLine("Enter 'cls' to clear the screen");
+                Console.WriteLine("Enter 'quit' to exit");
                 var command = "";
                 while ((command = Console.ReadLine()) != "quit")
                 {
@@ -31,7 +34,12 @@ namespace Consumer
                         CallService();
                         continue;
                     }
-                    Console.WriteLine("Unknown command; try 'svc' or 'quit'");
+                    if (command == "cls")
+                    {
+                        Console.Clear();
+                        continue;
+                    }
+                    Console.WriteLine("Unknown command; try 'svc', 'cls' or 'quit'");
                 }
             }
         }

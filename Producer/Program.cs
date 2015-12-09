@@ -38,6 +38,7 @@ namespace Producer
 
                 Console.WriteLine("The service is ready at {0}", baseAddress);
                 Console.WriteLine("Enter 'msg' to send a domain event.");
+                Console.WriteLine("Enter 'cls' to clear the screen.");
                 Console.WriteLine("Enter 'quit' to stop the service.");
 
 
@@ -51,7 +52,11 @@ namespace Producer
                         bus.Publish<IDriveFreeSpaceChanged>(info => info.FreeSpace = systemInformation.FreeSpace.GetValueOrDefault(0));
                         continue;
                     }
-                    Console.WriteLine("Unknown command; try 'quit' or 'msg'");
+                    if (command == "cls")
+                    {
+                        Console.Clear();
+                    }
+                    Console.WriteLine("Unknown command; try 'quit', 'cls' or 'msg'");
                 }
 
                 host.Close();
