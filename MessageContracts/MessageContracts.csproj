@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SystemInformation\DriveInformation.cs" />
     <Compile Include="SystemInformation\IDriveFreeSpaceChanged.cs" />
     <Compile Include="SystemInformation\IProvideSystemInformation.cs" />
     <Compile Include="SystemInformation\Request.cs" />
