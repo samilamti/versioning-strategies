@@ -1,4 +1,4 @@
-Param($what)
+Param($what="all")
 if ($what -eq "producer" -or $what -eq "all") {
 	start .\Producer\bin\Debug\Producer.exe
 }
