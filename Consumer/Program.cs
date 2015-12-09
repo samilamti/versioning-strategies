@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
 using System.ServiceModel;
@@ -22,26 +23,44 @@ namespace Consumer
                 t.Name.StartsWith("I") && t.Name.EndsWith("ed"));
             using (var bus = Bus.Create(busConfiguration).Start())
             {
-                Console.WriteLine("*** Consumer running");
-                Console.WriteLine("Enter 'svc' to call service");
-                Console.WriteLine("Enter 'cls' to clear the screen");
-                Console.WriteLine("Enter 'quit' to exit");
+                ShowHelp();
+                Prompt();
                 var command = "";
                 while ((command = Console.ReadLine()) != "quit")
                 {
                     if (command == "svc")
                     {
                         CallService();
+                        Prompt();
                         continue;
                     }
                     if (command == "cls")
                     {
                         Console.Clear();
+                        ShowHelp();
+                        Prompt();
                         continue;
                     }
                     Console.WriteLine("Unknown command; try 'svc', 'cls' or 'quit'");
+                    Prompt();
                 }
             }
+        }
+
+        private static void Prompt()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Consumer> ");
+        }
+
+        private static void ShowHelp()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("-- Consumer -------------------");
+            Console.WriteLine("Enter 'svc' to call service");
+            Console.WriteLine("Enter 'cls' to clear the screen");
+            Console.WriteLine("Enter 'quit' to exit");
+            Console.WriteLine("-------------------------------");
         }
 
         private static void CallService()

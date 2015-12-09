@@ -35,12 +35,10 @@ namespace Producer
                 };
                 host.Description.Behaviors.Add(smb);
                 host.Open();
-
                 Console.WriteLine("The service is ready at {0}", baseAddress);
-                Console.WriteLine("Enter 'msg' to send a domain event.");
-                Console.WriteLine("Enter 'cls' to clear the screen.");
-                Console.WriteLine("Enter 'quit' to stop the service.");
 
+                ShowHelp();
+                Prompt();
 
                 var command = "";
                 while ((command = Console.ReadLine()) != "quit")
@@ -50,17 +48,37 @@ namespace Producer
                         var serviceInstance = new SystemInformationService();
                         var systemInformation = serviceInstance.GetSystemInformation(new Request {IncludeDriveInformation = true});
                         bus.Publish<IDriveFreeSpaceChanged>(info => info.FreeSpace = systemInformation.FreeSpace.GetValueOrDefault(0));
+                        Prompt();
                         continue;
                     }
                     if (command == "cls")
                     {
                         Console.Clear();
+                        ShowHelp();
+                        Prompt();
                     }
                     Console.WriteLine("Unknown command; try 'quit', 'cls' or 'msg'");
+                    Prompt();
                 }
 
                 host.Close();
             }
+        }
+
+        private static void Prompt()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Producer> ");
+        }
+
+        private static void ShowHelp()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("-- Producer ----------------------------");
+            Console.WriteLine("Enter 'msg' to send a domain event.");
+            Console.WriteLine("Enter 'cls' to clear the screen.");
+            Console.WriteLine("Enter 'quit' to stop the service.");
+            Console.WriteLine("----------------------------------------");
         }
     }
 }
