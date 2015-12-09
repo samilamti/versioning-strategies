@@ -2,6 +2,6 @@ namespace MessageContracts.SystemInformation
 {
     public interface IDriveFreeSpaceChanged
     {
-        int FreeSpace { get; }
+        int FreeSpace { get; set; }
     }
 }
