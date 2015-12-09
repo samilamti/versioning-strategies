@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.ServiceModel;
-using System.ServiceModel.Description;
-using System.Text;
-using System.Threading.Tasks;
 using MessageContracts.SystemInformation;
 using NServiceBus;
 
@@ -44,7 +38,7 @@ namespace Consumer
 
         private static void CallService()
         {
-            const string uriString = "http://localhost:8080/":
+            const string uriString = "http://localhost:8080/";
             var watch = new Stopwatch();
 
             Console.WriteLine("Calling service on {0}... ", uriString);
