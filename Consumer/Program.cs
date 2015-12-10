@@ -48,7 +48,7 @@ namespace Consumer
             }
         }
 
-        private static void Prompt()
+        public static void Prompt()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Consumer> ");
@@ -108,6 +108,7 @@ namespace Consumer
             Console.WriteLine($@"Received event {
                 nameof(IDriveFreeSpaceChanged)}! Free space: {
                 String.Join(",", message.Drives.Select(di => $"{di.Drive}: {di.FreeSpaceFormatted}"))}");
+            Program.Prompt();
         }
     }
 }
