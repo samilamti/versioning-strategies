@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MessageContracts, Version=1.0.0.19157, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Producer\packages\MessageContracts.1.0.0.19157\lib\net452\MessageContracts.dll</HintPath>
+    <Reference Include="MessageContracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Producer\packages\MessageContracts.1.1.0\lib\net452\MessageContracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
