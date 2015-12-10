@@ -35,8 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MessageContracts">
-      <HintPath>..\MessageContracts\bin\Debug\MessageContracts.dll</HintPath>
+    <Reference Include="MessageContracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Producer\packages\MessageContracts.1.0.0\lib\net452\MessageContracts.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -61,6 +62,9 @@
       <Project>{6a4cefb5-4a2d-4d84-ad29-1e9688aed005}</Project>
       <Name>Producer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
