@@ -51,14 +51,12 @@ namespace Producer
                         var serviceInstance = new SystemInformationService();
                         var request = new Request
                         {
-                            IncludeDriveInformation = true,
                             IncludeInformationForDrives = new[] {"C", "D", "E", "F", "G"}
                         };
                         var systemInformation = serviceInstance.GetSystemInformation(request);
                         bus.Publish<IDriveFreeSpaceChanged>(info =>
                         {
                             info.Drives = systemInformation.DriveInformation;
-                            info.FreeSpace = systemInformation.FreeSpace.Value;
                         });
                         Prompt();
                         continue;

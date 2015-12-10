@@ -14,10 +14,6 @@ namespace Producer
             {
                 response.DateTime = System.DateTime.Now.ToString(informationRequest.DateTimeFormat);
             }
-            if (informationRequest.IncludeDriveInformation)
-            {
-                response.FreeSpace = BytesToMegaBytes(new DriveInfo("c").AvailableFreeSpace);
-            }
             if (informationRequest.IncludeInformationForDrives != null)
             {
                 var driveInformation = new List<DriveInformation>(informationRequest.IncludeInformationForDrives.Length);
