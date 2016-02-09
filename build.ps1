@@ -1,7 +1,7 @@
 "***************************************************"
 " "
 "To follow along, please checkout the first example:"
-"	git c heckout -b Example0 ReleaseN+0"
+"	git checkout -b Example0 ReleaseN+0"
 " "
 "For more information, please see README.md"
 "***************************************************"
