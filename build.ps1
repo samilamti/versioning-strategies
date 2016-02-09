@@ -1,3 +1,7 @@
-msbuild .\MessageContracts\MessageContracts.sln
-msbuild .\Producer\Producer.sln
-msbuild .\Consumer\Consumer.sln
+"***************************************************"
+" "
+"To follow along, please checkout the first example:"
+"	git c heckout -b Example0 ReleaseN+0"
+" "
+"For more information, please see README.md"
+"***************************************************"
